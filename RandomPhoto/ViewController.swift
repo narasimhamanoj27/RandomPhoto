@@ -9,7 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
+    /*
+        Creating a view for background color and content
+     */
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -17,6 +19,9 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    /*
+        Creating a button for action on click
+     */
     private let button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
@@ -26,7 +31,9 @@ class ViewController: UIViewController {
         return button
     }()
     
-    
+    /*
+        Default method when creating an IOS application
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -41,6 +48,9 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapPhoto), for: .touchUpInside)
     }
     
+    /*
+        Array of colors for background shift when on click
+     */
     let colors: [UIColor] = [
         .systemPink,
         .systemRed,
@@ -50,17 +60,26 @@ class ViewController: UIViewController {
         .systemOrange,
         .systemYellow]
     
+    /*
+        Calling the custom function of Random photo when clicked on button
+     */
     @objc func didTapPhoto() {
         getRandomPhoto()
         view.backgroundColor = colors.randomElement()
     }
     
+    /*
+        Adding the button to frame for proper alignment.
+     */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         button.frame = CGRect(x: 30, y: view.frame.size.height-130-view.safeAreaInsets.bottom, width: view.frame.size.width-40, height: 55)
     }
 
+    /*
+        Random photo function for triggering URL to the web and getting photo
+     */
     func getRandomPhoto() {
         let urlString = "https://source.unsplash.com/random/600x600"
         let url = URL(string: urlString)!
